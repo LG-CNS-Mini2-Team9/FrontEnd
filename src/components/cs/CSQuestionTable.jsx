@@ -5,13 +5,13 @@ const CSQuestionTable = ({ questions }) => {
   if (!questions) {
     return null;
   }
-  const thStyle = "font-medium py-10 text-black";
+  const thStyle = "font-medium py-10 text-white";
 
   return (
     <div className="h-600">
       <table className="w-full">
         <thead>
-          <tr className="bg-secondary rounded-[5px] text-center">
+          <tr className="rounded-[5px] text-center bg-gray-700">
             <th className={`${thStyle} rounded-l-[5px] w-90`}>번호</th>
             <th className={`${thStyle} text-start`}>문제</th>
             <th className={`${thStyle} w-130`}>날짜</th>

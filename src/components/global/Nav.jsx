@@ -23,7 +23,7 @@ const Nav = () => {
   };
 
   return (
-    <div className="w-full h-92 border-b-1 border-gray-100 items-center px-40 grid-cols-3 grid">
+    <div className="bg-background-dark w-full h-92 items-center px-40 grid-cols-3 grid text-gray-300">
       <ul className="flex">
         <li>
           <Link to="questions" className="px-20 text-lg font-semibold">

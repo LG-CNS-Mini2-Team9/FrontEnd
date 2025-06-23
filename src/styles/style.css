@@ -1,3 +1,7 @@
+body{
+  background-color: var(--color-background-base);
+}
+
 .rounded {
   border-radius: 0.375rem;
 }
@@ -151,4 +155,11 @@ header {
 
 .mypage-table td:first-child {
   background-color: #f0f0f0;
+}
+
+
+
+
+.gradient-blue{
+  background: linear-gradient(90deg, #3B82F6 0%, #1E40AF 100%);
 }

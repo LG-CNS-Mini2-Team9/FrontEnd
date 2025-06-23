@@ -16,17 +16,15 @@ const Home = () => {
   },[]);
 
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-center bg-gradient-to-br from-background-base to-white/10">
       {/* gradient */}
-      <div className="w-full py-50 bg-linear-to-b from-white to-secondary flex flex-col justify-center items-center">
+      <div className="w-full py-50 flex flex-col justify-center items-center">
         <Window todayQuestion={todayQuestion}/>
 
         <div className="flex justify-center">
-          {todayQuestion && 
-          <Link className="items-center px-50 py-16 text-lg rounded-[10px] text-white bg-primary" to={`/questions/detail/${todayQuestion.id}`}>
+          <Link className="items-center px-50 py-16 text-lg rounded-[10px] text-white gradient-blue" >
             답변 작성하기
           </Link>
-          }
         </div>
       </div>
 
@@ -36,7 +34,7 @@ const Home = () => {
 
       {/* CS 면접 질문 리스트 */}
       <div className="px-120 mb-120 flex flex-col gap-24">
-        <Link className="text-xl font-semibold" to='/questions'>CS 면접 질문 리스트</Link>
+        <Link className="text-xl text-primary font-semibold" to='/questions'>CS 면접 질문 리스트</Link>
         <CSQuestionTable questions={questions} />
       </div>
     </div>

@@ -5,7 +5,7 @@ const BigButton = ({ text, onClick, fill, width, disabled }) => {
     "flex justify-center items-center px-18 py-12 font-semibold text-sm rounded-[10px]";
   const fillClasses = fill
     ? "bg-primary text-white"
-    : "bg-white text-primary border border-primary";
+    : " text-primary border border-primary";
 
   return (
     <button className={`${baseClasses} ${fillClasses} cursor-pointer`} onClick={onClick} style={{width:width}} disabled={disabled}>

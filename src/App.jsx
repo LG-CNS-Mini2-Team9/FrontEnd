@@ -14,6 +14,7 @@ import MyAnswersPage from "./pages/MyAnswersPage";
 import CSQuestionDetailPage from "./pages/CSQuestionDetailPage";
 import Auth from "./pages/Auth";
 import axios from "axios";
+import "./index.css";
 
 function App() {
   // const accessToken = localStorage.getItem("accessToken");

@@ -18,9 +18,9 @@ const Window = ({ todayQuestion }) => {
 
 
   return (
-    <div className="w-640 h-360 bg-white rounded-lg shadow-[0px_0px_15px_0px_rgba(29,78,214,0.15)] mb-50">
+    <div className="w-640 h-362 bg-background-light rounded-lg shadow-[0px_0px_15px_0px_rgba(0,0,0,0.2)] mb-50 border-1 border-gray-300/10">
       {/* header */}
-      <div className="border-b-1 w-full h-42 border-gray-100 flex items-center px-24">
+      <div className="w-full h-42 flex items-center px-24 border-b-1 border-gray-300/10">
         {/* circles */}
         <div className="flex gap-6 items-center pr-117">
           <Circle color="primary" />
@@ -29,15 +29,15 @@ const Window = ({ todayQuestion }) => {
         </div>
 
         {/* search */}
-        <div className="w-270 py-4 bg-gray-100 rounded-[5px] flex justify-end px-12">
-          <p className="text-center text-sm text-gray-700">{formattedDate}</p>
+        <div className="w-270 py-4 bg-gray-700 rounded-[5px] flex justify-end px-12 border-1 border-gray-300/10">
+          <p className="text-center text-sm text-gray-300">{formattedDate}</p>
           <img src={search} alt="search" className="pl-60" />
         </div>
       </div>
 
       {/* content */}
-      <div className="py-22 flex flex-col items-center px-48 h-318">
-        <span className="text-base text-center font-semibold text-black border-b-1 border-black">
+      <div className="py-16 flex flex-col items-center px-48 h-318 bg-gradient-to-b from-background-dark to-background-light rounded-b-lg">
+        <span className="text-base text-center text-gray-300 font-base border-b-1 border-gray-300">
           오늘의 CS 질문
         </span>
 
