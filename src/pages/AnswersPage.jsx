@@ -39,6 +39,7 @@ export default function AnswersPage() {
         page={page}
         setPage={setPage}
       />
+
     </div>
   );
 }
