@@ -70,7 +70,7 @@ function QuestionBoard() {
   };
 
   return (
-    <main className="px-120 bg-white">
+    <main className="px-120">
       <form
         onSubmit={handleSearchSubmit}
         className="mb-6 flex justify-between items-center"
