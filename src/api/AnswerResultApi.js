@@ -4,17 +4,31 @@ import axios from "axios";
 export const getAnswer = async (answerId) => {
   const accessToken = localStorage.getItem("accessToken");
 
-  try {
-    const res = await axios.get(`/api/answer/${answerId}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    console.log(res.data);
-    return res;
-  } catch (e) {
-    console.log(e);
+  // try {
+  //   const res = await axios.get(`/api/answer/${answerId}`, {
+  //     headers: {
+  //       Authorization: `Bearer ${accessToken}`,
+  //     },
+  //   });
+  //   console.log(res.data);
+  //   return res;
+  // } catch (e) {
+  //   console.log(e);
+  // }
+
+  const res = {
+    csanswer_id:2,
+    csquestion_id:1,
+    csquestion_category:"알고리즘",
+    csquestion_content:"문제문제",
+    csanswer_content:"답변답변",
+    csanswer_feedback:"ㅇㅇㅇ",
+    csanswer_score:93,
+    csanswer_createdAt:"2025-05-21",
+    author:"lgcns"
   }
+  console.log(res);
+  return res;
 
 };
 
