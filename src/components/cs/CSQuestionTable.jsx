@@ -11,7 +11,7 @@ const CSQuestionTable = ({ questions }) => {
     <div className="h-600">
       <table className="w-full">
         <thead>
-          <tr className="rounded-[5px] text-center bg-gray-700">
+          <tr className="rounded-[5px] text-center bg-background-light">
             <th className={`${thStyle} rounded-l-[5px] w-90`}>번호</th>
             <th className={`${thStyle} text-start`}>문제</th>
             <th className={`${thStyle} w-130`}>날짜</th>

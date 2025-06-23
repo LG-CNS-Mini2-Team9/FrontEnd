@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { fetchMyAnswers } from "../api/myAnswersApi";
+import { fetchAllAnswers } from "../api/myAnswersApi";
 import Tab from "../components/global/Tab";
 import Pagination from "../components/global/Pagination";
 import CSAnswerTable from "../components/answer/CSAnswerTable";
 
-export default function MyAnswersPage() {
+export default function AnswersPage() {
   const { questionId } = useParams();
   const [answers, setAnswers] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
@@ -15,10 +15,9 @@ export default function MyAnswersPage() {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const pageParam = parseInt(params.get("page")) || 1;
-    const categoryParam = params.get("category") || "";
     setPage(pageParam);
 
-    fetchMyAnswers(pageParam, categoryParam)
+    fetchAllAnswers(pageParam, questionId)
       .then((data) => {
         console.log(data);
         setAnswers(data);
@@ -39,8 +38,8 @@ export default function MyAnswersPage() {
         totalPages={totalPages}
         page={page}
         setPage={setPage}
-        category="알고리즘"
       />
+
     </div>
   );
 }

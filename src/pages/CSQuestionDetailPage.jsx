@@ -77,11 +77,7 @@ const CSQuestionDetailPage = () => {
   return (
     <div className="px-120">
       {/* tab */}
-      <Tab
-        title={`${questionId}번`}
-        titleTo={`/questions/detail/${questionId}`}
-        from="question"
-      />
+      <Tab questionId={questionId} />
 
       {/* 문제 */}
       {question && (
