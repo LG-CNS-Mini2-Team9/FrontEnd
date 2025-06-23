@@ -9,11 +9,12 @@ import QuestionDetail from "./pages/QuestionDetail";
 import CSQuestionBoard from "./pages/CSQuestionBoard";
 import QuestionPostPage from "./pages/QuestionPostPage";
 import AnswerResultPage from "./pages/AnswerResultPage";
+import AnswersPage from "./pages/AnswersPage";
 import Delete from "./pages/Delete";
 import MyAnswersPage from "./pages/MyAnswersPage";
+import MyAllAnswersPage from "./pages/MyAllAnswersPage";
 import CSQuestionDetailPage from "./pages/CSQuestionDetailPage";
 import Auth from "./pages/Auth";
-import axios from "axios";
 import "./index.css";
 
 function App() {
@@ -30,18 +31,15 @@ function App() {
           <Route path="/user/info" element={<MyPage />} />
           <Route path="/user/update" element={<InfoUpdate />} />
           <Route path="/user/delete" element={<Delete />} />
-          <Route path="/comm" element={<QuestionBoard />} />
-          <Route path="/comm/:number" element={<QuestionDetail />} />
           <Route path="/questions" element={<CSQuestionBoard />} />
           <Route
             path="/questions/detail/:questionId"
             element={<CSQuestionDetailPage />}
           />
-          <Route path="/comm/post" element={<QuestionPostPage />} />
-          <Route path="/answer/:answerId" element={<AnswerResultPage />} />
-          <Route path="/myAnswers" element={<MyAnswersPage />} />
-          <Route path="/myAnswers/:questionId" element={<MyAnswersPage />}
-        />
+          <Route path="/answers/detail/:answerId" element={<AnswerResultPage />} />
+          <Route path="/answers/my" element={<MyAllAnswersPage />} />
+          <Route path="/answers/my/:questionId" element={<MyAnswersPage />} />
+          <Route path="/answers/all/:questionId" element={<AnswersPage />} />
           <Route path="/auth" element={<Auth />} />
         </Routes>
       </BrowserRouter>
