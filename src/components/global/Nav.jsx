@@ -31,8 +31,8 @@ const Nav = () => {
           </Link>
         </li>
         <li>
-          <Link to="comm" className="px-20 text-lg font-semibold">
-            질문 게시판
+          <Link to="/answers/my" className="px-20 text-lg font-semibold">
+            내 모든 답변
           </Link>
         </li>
       </ul>

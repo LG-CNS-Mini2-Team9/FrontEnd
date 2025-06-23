@@ -23,7 +23,7 @@ export default function Category({
         value={value}
         onChange={onChange}
         className={
-          "w-150 border border-gray-300 rounded-lg p-8 " +
+          "w-150 border border-gray-300/10 rounded-lg p-8 " +
           "focus:ring-2 focus:ring-secondary focus:outline-none" +
           className
         }

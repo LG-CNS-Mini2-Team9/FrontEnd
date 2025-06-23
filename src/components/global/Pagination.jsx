@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Pagination = ({ totalPages, page, setPage, category }) => {
+const Pagination = ({ totalPages, page, setPage, category="" }) => {
   const navigate = useNavigate();
   const startPage = Math.floor((page - 1) / 10) * 10 + 1;
   const endPage = Math.min(startPage + 9, totalPages);
@@ -33,7 +33,7 @@ const Pagination = ({ totalPages, page, setPage, category }) => {
 
   return (
     <div className="flex justify-center py-36">
-      <ul className="flex items-center">
+      <ul className="flex items-center text-white">
         <p onClick={handlePrev} className="mr-32 cursor-pointer pr-16 border-r-1 border-gray-500">
           prev
         </p>
