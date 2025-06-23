@@ -6,10 +6,10 @@ function AnswerTab({ to, label, active = false, state }) {
     <Link
       to={to}
       state={state}
-      className={`inline-block px-8 py-4 min-w-[80px] text-center text-lg font-medium
+      className={`inline-block px-24 py-8 min-w-[80px] text-center text-base font-medium
         ${active
           ? "text-primary border-b-2 border-primary"
-          : "text-gray-500 hover:text-primary"
+          : "text-white hover:text-primary"
         }`}
     >
       {label}
@@ -17,77 +17,29 @@ function AnswerTab({ to, label, active = false, state }) {
   );
 }
 
-const Tab = ({ title, titleTo, from }) => {
+const Tab = ({ questionId  }) => {
   const location = useLocation();
 
-  let leftLabel = "";
-  let leftTo = "";
-  let stateForMyAnswers = {};
-
-
-  if (from === "myPage") {
-    leftLabel = "마이페이지";
-    leftTo = "/user/info";
-    stateForMyAnswers = {
-      from: "myPage",
-    };
-  }else {
-    leftLabel = title;
-    leftTo = titleTo;
-    stateForMyAnswers = {
-      from: "question",
-      title,
-      titleTo,
-      questionId: title.replace("번", ""),
-    };
-  } 
-
-  const baseMyAnswersPath = stateForMyAnswers.questionId
-    ? `/myAnswers/${stateForMyAnswers.questionId}`
-    : "/myAnswers";
-    
-  const myAnswersTo = `${baseMyAnswersPath}?page=1`;
-
-  const isMyAnswersActive = stateForMyAnswers.questionId
-    ? location.pathname === `/myAnswers/${stateForMyAnswers.questionId}`
-    : location.pathname === "/myAnswers";
 
   return (
-    <nav className="mt-24">
-      {from==="myAnswer"
-      ?
+    <nav className="mt-24 mb-16">
       <>
-      <AnswerTab
-      to={titleTo}
-      label={title}
-      active={location.pathname.includes("/answer/")}
-      />
-       <AnswerTab
-        to={`/myAnswers/${stateForMyAnswers.questionId}`}
-        label="내 답변"
-        state={stateForMyAnswers}
-        active={isMyAnswersActive}
-      />
+        <AnswerTab
+          to={`/questions/detail/${questionId}`}
+          label={questionId+"번"}
+          active={location.pathname.includes("/questions/")}
+        />
+        <AnswerTab
+          to={`/answers/my/${questionId}`}
+          label="내 답변"
+          active={location.pathname.includes("/answers/my")}
+        />
+        <AnswerTab
+          to={`/answers/all/${questionId}`}
+          label="전체 답변"
+          active={location.pathname.includes("/answers/all")}
+        />
       </>
-      
-      :
-      <>
-      <AnswerTab
-      to={leftTo}
-      label={leftLabel}
-      active={location.pathname === leftTo}
-      />
-       <AnswerTab
-        to={myAnswersTo}
-        label="내 답변"
-        state={stateForMyAnswers}
-        active={isMyAnswersActive}
-      />
-      </>
-      
-    }
-
-     
     </nav>
   );
 };
