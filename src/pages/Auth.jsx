@@ -50,20 +50,26 @@ function SignInForm() {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/user/login", { email, password });
+      const res = await axios.post("/api/auth/v1/login", {
+        email,
+        password,
+      });
       const result = res.data.result;
-      
 
       localStorage.setItem("accessToken", result.accesstoken);
-      localStorage.setItem("email", result.email);
       localStorage.setItem("name", result.name);
+      localStorage.setItem("email", result.email);
       localStorage.setItem("nickname", result.nickname);
-      localStorage.setItem("profileImgUrl", result.profileImgUrl);
+      localStorage.setItem("tier", result.tier);
+      localStorage.setItem("interests", result.interests);
 
-      document.cookie = `refreshToken=${result.refreshtoken}; path=/; max-age=${7 * 24 * 60 * 60}; Secure; SameSite=Strict`;
+      document.cookie = `refreshToken=${result.refreshtoken}; path=/; max-age=${
+        7 * 24 * 60 * 60
+      }; Secure; SameSite=Strict`;
 
-      
-      axios.defaults.headers.common["Authorization"] = `Bearer ${result.accesstoken}`;
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${result.accesstoken}`;
       navigate("/");
       window.location.reload();
     } catch (err) {
@@ -108,7 +114,7 @@ function SignUpForm() {
   const [profile_image, setProfileImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const navigate = useNavigate();
-  
+
   const handleSignUp = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
