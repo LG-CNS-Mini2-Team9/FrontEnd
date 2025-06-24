@@ -22,10 +22,9 @@ export const getAnswer = async (answerId) => {
     csquestion_category:"알고리즘",
     csquestion_content:"문제문제",
     csanswer_content:"답변답변",
-    csanswer_feedback:"ㅇㅇㅇ",
-    csanswer_score:93,
     csanswer_createdAt:"2025-05-21",
-    author:"lgcns"
+    user_nickname:"lgcns",
+    user_id:1,
   }
   console.log(res);
   return res;
@@ -35,23 +34,29 @@ export const getAnswer = async (answerId) => {
 // AI 피드백 요청
 export const requestFeedback = async (answerId) => {
   const accessToken = localStorage.getItem("accessToken");
-  try {
-    const res = await axios.post(
-      `/api/api/answers/${answerId}`,
-      {},
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`
-        },
-      }
-    );
-    console.log("requestFeedback 응답:", res.data);
-    return res;
-  } catch (e) {
-    console.error("requestFeedback 에러:", e);
-    throw e;
+  // try {
+  //   const res = await axios.post(
+  //     `/api/api/answers/${answerId}`,
+  //     {},
+  //     {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${accessToken}`
+  //       },
+  //     }
+  //   );
+  //   console.log("requestFeedback 응답:", res.data);
+  //   return res.data;
+  // } catch (e) {
+  //   console.error("requestFeedback 에러:", e);
+  //   throw e;
+  // }
+
+  const feedback = {
+    content:"fff",
+    score:83
   }
+  return feedback;
 };
 
 

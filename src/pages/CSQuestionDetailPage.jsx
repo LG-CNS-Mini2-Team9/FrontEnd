@@ -7,22 +7,8 @@ import BigButton from "../components/global/BigButton";
 import { fetchQuestionById } from "../api/CSQuestionApi";
 import Tab from "../components/global/Tab";
 import { editAnswer } from "../api/AnswerResultApi";
+import CategoryChip from "../components/global/CategoryChip";
 
-function AnswerTab({ to, label, active = false }) {
-  return (
-    <Link
-      to={to}
-      className={`inline-block px-8 py-12 min-w-[80px] text-center
-                  ${
-                    active
-                      ? "text-blue-600 border-b-2 border-blue-600"
-                      : "text-gray-500 hover:text-blue-600"
-                  }`}
-    >
-      {label}
-    </Link>
-  );
-}
 
 const CSQuestionDetailPage = () => {
   const [question, setQuestion] = useState();
@@ -44,7 +30,7 @@ const CSQuestionDetailPage = () => {
 
     try {
       const res = await axios.post(
-        "/api/answer",
+        "/api/answers/v1",
         {
           csquestion_id: questionId,
           csanswer_content: content,
@@ -81,9 +67,12 @@ const CSQuestionDetailPage = () => {
 
       {/* 문제 */}
       {question && (
-        <p className="text-2xl py-36 border-b-1 border-gray-300 mb-36">
-          {question.content}
-        </p>
+        <div>
+          <CategoryChip category={question.category} />
+          <p className="text-2xl text-white pt-16 pb-24 border-b-1 border-gray-300 mb-36">
+            {question.content}
+          </p>
+        </div>
       )}
 
       {/* 작성 */}
