@@ -23,12 +23,14 @@ const Home = () => {
         <Window todayQuestion={recommendedQuestion} />
       </div>
 
-      <p className="text-gray-500 text-center py-24">
-        매일 카테고리 별로 새로운 문제가 생성됩니다.
-      </p>
+      <div className="px-120 mt-12">
+        <div className="bg-gradient-to-b from-background-dark to-background-light rounded-lg px-16 py-24 text-center">
+          <p className="text-gray-300">매일 자정에 카테고리 별로 새로운 문제가 생성됩니다.</p>
+        </div>
+      </div>
 
       {/* CS 면접 질문 리스트 */}
-      <div className="px-120 mb-120 flex flex-col gap-24">
+      <div className="px-120 mb-120 flex flex-col mt-48">
         <Link className="text-xl text-primary font-semibold" to='/questions'>CS 면접 질문 리스트</Link>
         <CSQuestionTable questions={questions} />
       </div>

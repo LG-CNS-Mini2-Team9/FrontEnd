@@ -20,7 +20,7 @@ const Window = ({ todayQuestion }) => {
 
 
   return (
-    <div className="w-full h-[520px] bg-background-light rounded-lg shadow-[0px_0px_15px_0px_rgba(0,0,0,0.2)] mb-50 border-1 border-gray-300/10">
+    <div className="w-full h-[520px] bg-background-light rounded-lg shadow-[0px_0px_15px_0px_rgba(0,0,0,0.2)] border-1 border-gray-300/10">
       {/* header */}
       <div className="relative w-full h-42 flex items-center justify-center px-24 border-b-1 border-gray-300/10">
         {/* circles */}
