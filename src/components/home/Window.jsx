@@ -1,5 +1,6 @@
 import React from "react";
 import search from "../../assets/search.svg";
+import { Link } from "react-router-dom"; // Link 컴포넌트 import
 import CategoryChip from "../global/CategoryChip";
 
 const Circle = ({ color }) => {
@@ -19,7 +20,7 @@ const Window = ({ todayQuestion }) => {
 
 
   return (
-    <div className="w-full h-362 bg-background-light rounded-lg shadow-[0px_0px_15px_0px_rgba(0,0,0,0.2)] mb-50 border-1 border-gray-300/10">
+    <div className="w-full h-[520px] bg-background-light rounded-lg shadow-[0px_0px_15px_0px_rgba(0,0,0,0.2)] mb-50 border-1 border-gray-300/10">
       {/* header */}
       <div className="relative w-full h-42 flex items-center justify-center px-24 border-b-1 border-gray-300/10">
         {/* circles */}
@@ -48,6 +49,23 @@ const Window = ({ todayQuestion }) => {
             <p className="text-5xl font-semibold text-primary text-shadow-[2px_2px_10px_rgb(0_0_0_/_0.15)] leading-tight">
               {todayQuestion.content}
             </p>
+            {/* '답변 작성하기' 버튼 추가 */}
+            {/* isSubmitted 여부에 따라 버튼 텍스트 및 링크 변경 */}
+            {todayQuestion.isSubmitted ? (
+              <Link
+                to={`/answers/my/${todayQuestion.id}`} // 내 답변 보기 페이지로 이동
+                className="items-center px-50 py-16 text-lg rounded-[10px] text-white bg-gray-500 mt-4"
+              >
+                제출한 답변 보기
+              </Link>
+            ) : (
+              <Link
+                to={`/questions/detail/${todayQuestion.id}`}
+                className="items-center px-50 py-16 text-lg rounded-[10px] text-white gradient-blue mt-4"
+              >
+                답변 작성하기
+              </Link>
+            )}
           </div>
         ) : (
           <div className="flex-grow flex items-center justify-center">
