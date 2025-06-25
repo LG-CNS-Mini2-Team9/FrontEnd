@@ -37,8 +37,7 @@ const CSQuestionBoard = () => {
   };
   return (
     <div className="px-120">
-      {/* 카테고리 필터링 */}
-      <div className="flex items-center gap-12 my-24">
+      <div className="flex items-center gap-12 my-24 text-white">
         <p>카테고리</p>
         <Category value={category} onChange={(e) => handleSelectCategory(e)} />
       </div>
