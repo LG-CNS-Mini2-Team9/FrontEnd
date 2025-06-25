@@ -1,26 +1,15 @@
 import axios from "axios";
 
-
-export const postLogout = async ({ accessToken }) => {
+export const postLogout = () => {
   try {
-    const res = await axios.post(
-      "/api/user/logout",
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-
-    // setAccessToken(null);
     localStorage.removeItem("accessToken");
     localStorage.removeItem("name");
     localStorage.removeItem("email");
-    localStorage.removeItem("profileImgUrl");
     localStorage.removeItem("nickname");
-    document.cookie = "refreshToken=; path=/; max-age=0; Secure; SameSite=Strict";
-
+    localStorage.removeItem("tier");
+    localStorage.removeItem("interests");
+    document.cookie =
+      "refreshToken=; path=/; max-age=0; Secure; SameSite=Strict";
   } catch (e) {
     console.log(e);
   }
@@ -33,11 +22,11 @@ function getCookie(name) {
   }
   return null;
 }
-export const reissueToken = async () =>{
+export const reissueToken = async () => {
   const refreshToken = getCookie("refreshToken");
-  try{
+  try {
     const res = await axios.post(
-      "/api/auth/reissue",
+      "/api/auth/v1/refresh",
       {},
       {
         headers: {
@@ -50,7 +39,7 @@ export const reissueToken = async () =>{
     localStorage.setItem("accessToken", res.data.result);
 
     return res;
-  }catch(e){
+  } catch (e) {
     console.log(e);
   }
-}
+};
