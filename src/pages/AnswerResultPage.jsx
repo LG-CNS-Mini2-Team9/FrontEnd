@@ -12,9 +12,10 @@ import CategoryChip from "../components/global/CategoryChip";
 export default function AnswerResultPage() {
   const { answerId } = useParams();
   const [result, setResult] = useState();
-  const [feedbackLoading, setFeedbackLoading] = useState(false);
+  const [feedback, setFeedback] = useState();
   const navigate = useNavigate();
   const location = useLocation();
+  const userId = localStorage.getItem("userId");
 
   // useEffect(() => {
   //   if (result) return;
@@ -38,17 +39,22 @@ export default function AnswerResultPage() {
   // }, [answerId, result, navigate]);
 
   useEffect(() => {
-    getAnswer(3)
+    getAnswer(answerId)
       .then((data) => {
         console.log(data);
         setResult(data);
+        requestFeedback(answerId).then((data)=>{
+          setFeedback(data);
+        }).catch((err)=>{
+          console.log(err);
+        })
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
 
-  if (!result) {
+  if (!result || !feedback) {
     return (
       <section className="max-w-5xl mx-auto p-6 text-center">
         로딩 중...
@@ -57,44 +63,23 @@ export default function AnswerResultPage() {
   }
 
 
-
-  const handleFeedback = async () => {
-    setFeedbackLoading(true);
-    try {
-      const res = await requestFeedback(answerId);
-      if (res.data.isSuccess) {
-        setResult((prev) => ({
-          ...prev,
-          csanswer_feedback: res.data.result.csanswer_feedback,
-        }));
-      } else {
-        alert(res.data.message);
-      }
-    } catch (err) {
-      console.error(err);
-      alert("피드백 요청 중 에러가 발생했습니다.");
-    } finally {
-      setFeedbackLoading(false);
-    }
-  };
-
   const handleEdit = () => {
-    // navigate(`/questions/detail/${result.csanswer_id}`, {
-    //   state: {
-    //     csquestion_id,
-    //     csquestion_category,
-    //     csquestion_content,
-    //     csanswer_id,
-    //     csanswer_content,
-    //   },
-    // });
+    navigate(`/questions/detail/${result.csanswer_id}`, {
+      state: {
+        csquestion_id:result.csquestion_id,
+        csquestion_category:result.csquestion_category,
+        csquestion_content:result.csquestion_content,
+        csanswer_id:result.csanswer_id,
+        csanswer_content:result.csanswer_content,
+      },
+    });
   };
 
   const handleDelete = () => {
-    // deleteAnswer(answerId).then(() => {
-    //   alert("답변이 삭제되었습니다.");
-    //   navigate(`/questions/detail/${csquestion_id}`);
-    // });
+    deleteAnswer(answerId).then(() => {
+      alert("답변이 삭제되었습니다.");
+      navigate(`/questions/detail/${result.csquestion_id}`);
+    });
   };
 
   const parseBold = (text) => {
@@ -107,22 +92,21 @@ export default function AnswerResultPage() {
       return <span key={idx}>{part}</span>;
     });
   };
-  
+
   return (
-    
-    
     <div className="px-120 text-white">
-      <Tab
-        questionId={result.questionId}
-      />
+      <Tab questionId={result.questionId} />
 
       {/* ─── 문제 본문 ───────────────────────── */}
       <div className="border-b-1 border-gray-300/10 mb-36">
-      <CategoryChip category={result.csquestion_category}/>
-      <h2 className="text-2xl pt-16 pb-24">
-        {result.csquestion_content}
-      </h2>
-      <p className="text-sm mb-6">{result.author} <span className="text-xs text-gray-300">{result.csanswer_createdAt}</span></p>
+        <CategoryChip category={result.csquestion_category} />
+        <h2 className="text-2xl pt-16 pb-24">{result.csquestion_content}</h2>
+        <p className="text-sm mb-6">
+          {result.author}{" "}
+          <span className="text-xs text-gray-300">
+            {result.csanswer_createdAt}
+          </span>
+        </p>
       </div>
 
       {/* ─── 답변 ───────────────────────── */}
@@ -133,29 +117,25 @@ export default function AnswerResultPage() {
       ></div>
 
       {/* ─── AI 피드백 받기 ───────────────────────── */}
-      <div className="mb-60">
-        <h3 className="text-lg mb-16 text-primary flex justify-between">AI 피드백 <span>{result.csanswer_score}점</span></h3>
-        {result.csanswer_feedback && result.csanswer_feedback !== "아직 피드백 없음" ? (
+      {feedback && (
+        <div className="mb-60">
+          <h3 className="text-lg mb-16 text-primary flex justify-between">
+            AI 피드백 <span>{feedback.score}점</span>
+          </h3>
+
           <div className="whitespace-pre-wrap text-base leading-relaxed text-gray-300 border-1 border-gray-300/20 rounded-lg p-12 mb-24">
-            {parseBold(result.csanswer_feedback)}
+            {parseBold(feedback.content)}
           </div>
-        ) : (
-          <BigButton
-            onClick={handleFeedback}
-            fill
-            disabled={feedbackLoading}
-            text={feedbackLoading ? "요청 중..." : "AI 피드백 받기"}
-          />
-        )}
-      </div>
+        </div>
+      )}
 
       {/* ─── 수정 / 삭제 ───────────────────────── */}
-      <div className="flex gap-8 justify-end mb-60">
-        <BigButton onClick={handleEdit} text="수정" fill />
-        <BigButton onClick={handleDelete} text="삭제" />
-      </div>
-
-
+      {userId === result.user_id && (
+        <div className="flex gap-8 justify-end mb-60">
+          <BigButton onClick={handleEdit} text="수정" fill />
+          <BigButton onClick={handleDelete} text="삭제" />
+        </div>
+      )}
     </div>
   );
 }

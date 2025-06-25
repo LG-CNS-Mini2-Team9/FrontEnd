@@ -27,7 +27,7 @@ const Tab = ({ questionId  }) => {
         <AnswerTab
           to={`/questions/detail/${questionId}`}
           label={questionId+"번"}
-          active={location.pathname.includes("/questions/")}
+          active={location.pathname.includes("/detail/")}
         />
         <AnswerTab
           to={`/answers/my/${questionId}`}
