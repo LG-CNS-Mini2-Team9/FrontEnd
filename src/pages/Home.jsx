@@ -3,29 +3,34 @@ import Nav from "../components/global/Nav";
 import BigButton from "../components/global/BigButton";
 import { Link } from "react-router-dom";
 import Window from "../components/home/Window";
-import { fetchQuestions, fetchTodayQuestion } from "../api/CSQuestionApi";
+import { fetchQuestions, fetchRecommendQuestion } from "../api/CSQuestionApi";
 import CSQuestionTable from "../components/cs/CSQuestionTable";
 
 const Home = () => {
-  const [todayQuestion, setTodayQuestion] = useState();
+  const [recommendedQuestion, setRecommendedQuestion] = useState(null);
   const [questions, setQuestions] = useState([]);
 
-  useEffect(()=>{
-    fetchTodayQuestion().then((data)=>setTodayQuestion(data));
-    fetchQuestions(1).then((data)=>setQuestions(data.content));
-  },[]);
+  useEffect(() => {
+    // 기존 fetchTodayQuestion 대신 fetchRecommendQuestion을 호출합니다.
+    fetchRecommendQuestion().then((data) => setRecommendedQuestion(data));
+    fetchQuestions(1).then((data) => setQuestions(data.content));
+  }, []);
 
   return (
     <div className="flex flex-col justify-center bg-gradient-to-br from-background-base to-white/10">
       {/* gradient */}
       <div className="w-full py-50 flex flex-col justify-center items-center">
-        <Window todayQuestion={todayQuestion}/>
+        <Window todayQuestion={recommendedQuestion} />
 
-        <div className="flex justify-center">
-          <Link className="items-center px-50 py-16 text-lg rounded-[10px] text-white gradient-blue" >
-            답변 작성하기
-          </Link>
-        </div>
+        {/* 추천 문제가 있을 경우에만 답변 작성하기 버튼을 보여주고, 해당 문제 상세 페이지로 연결합니다. */}
+          {recommendedQuestion && (
+            <Link
+              to={`/questions/detail/${recommendedQuestion.id}`}
+              className="items-center px-50 py-16 text-lg rounded-[10px] text-white gradient-blue"
+            >
+              답변 작성하기
+            </Link>
+         )}
       </div>
 
       <p className="text-gray-500 text-center py-24">

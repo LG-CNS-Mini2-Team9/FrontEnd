@@ -21,6 +21,11 @@ export const fetchTodayQuestion = async () => {
   return res.data.result;
 };
 
+export const fetchRecommendQuestion = async () => {
+  const response = await apiClient.get("/api/questions/recommend");
+  return response.data;
+};
+
 export const fetchQuestionById = async (questionId) => {
   const res = await axios.get(`/api/questions/${questionId}`);
 
