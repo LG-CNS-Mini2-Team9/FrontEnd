@@ -27,7 +27,12 @@ export const fetchRecommendQuestion = async () => {
 };
 
 export const fetchQuestionById = async (questionId) => {
-  const res = await axios.get(`/api/questions/${questionId}`);
-
-  return res.data.result;
+  // const res = await axios.get(`/api/questions/${questionId}`);
+  const question = {
+    category:"네트워크",
+    content:"TCP/IP의 개념을 설명하세요",
+    id:2
+  }
+  return question;
+  // return res.data.result;
 };
