@@ -8,6 +8,8 @@ import {
 import Tab from "../components/global/Tab";
 import BigButton from "../components/global/BigButton";
 import CategoryChip from "../components/global/CategoryChip";
+import heart from "../assets/heart.svg";
+import heartFill from "../assets/heartFill.svg";
 
 export default function AnswerResultPage() {
   const { answerId } = useParams();
@@ -16,6 +18,8 @@ export default function AnswerResultPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const userId = localStorage.getItem("userId");
+  const [isLiked, setIsLiked] = useState(false);
+  const[likeCount, setLikeCount] = useState(3);
 
   // useEffect(() => {
   //   if (result) return;
@@ -93,6 +97,16 @@ export default function AnswerResultPage() {
     });
   };
 
+  const handleClickLike = ()=>{
+    setIsLiked(!isLiked);
+    if(isLiked){
+      setLikeCount(likeCount-1);
+    }else{
+      setLikeCount(likeCount+1);
+
+    }
+  }
+
   return (
     <div className="px-120 text-white">
       <Tab questionId={result.csquestion_id} />
@@ -129,13 +143,25 @@ export default function AnswerResultPage() {
         </div>
       )}
 
-      {/* ─── 수정 / 삭제 ───────────────────────── */}
-      {userId == result.user_id && (
-        <div className="flex gap-8 justify-end mb-60">
-          <BigButton onClick={handleEdit} text="수정" fill />
-          <BigButton onClick={handleDelete} text="삭제" />
+      <div className="flex justify-between">
+        <div onClick={handleClickLike} className="h-20 flex gap-12 items-center text-gray-300">
+          {isLiked ? (
+            <img src={heartFill} alt="" />
+          ) : (
+            <img src={heart} alt="" />
+          )}
+
+          <p>{likeCount}</p>
         </div>
-      )}
+
+        {/* ─── 수정 / 삭제 ───────────────────────── */}
+        {userId == result.user_id && (
+          <div className="flex gap-8 justify-end mb-60">
+            <BigButton onClick={handleEdit} text="수정" fill />
+            <BigButton onClick={handleDelete} text="삭제" />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
