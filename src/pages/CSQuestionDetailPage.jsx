@@ -9,7 +9,6 @@ import Tab from "../components/global/Tab";
 import { editAnswer } from "../api/AnswerResultApi";
 import CategoryChip from "../components/global/CategoryChip";
 
-
 const CSQuestionDetailPage = () => {
   const [question, setQuestion] = useState();
   const { questionId } = useParams();
@@ -18,6 +17,7 @@ const CSQuestionDetailPage = () => {
   const editState = location.state;
   const isEditMode = !!editState?.csanswer_id;
   const [content, setContent] = useState(editState?.csanswer_content || "");
+  const [showHint, setShowHint] = useState(false);
 
   const postAnswer = async () => {
     const accessToken = localStorage.getItem("accessToken");
@@ -51,9 +51,13 @@ const CSQuestionDetailPage = () => {
   };
 
   const handleEditAnswer = () => {
-    editAnswer(editState.csanswer_id, content).then(()=>
+    editAnswer(editState.csanswer_id, content).then(() =>
       navigate(`/answer/${editState.csanswer_id}`)
     );
+  };
+
+  const toggleHint = () => {
+    setShowHint(!showHint);
   };
 
   useEffect(() => {
@@ -78,12 +82,32 @@ const CSQuestionDetailPage = () => {
       {/* 작성 */}
       <CSAnswerEditor content={content} setContent={setContent} />
 
-      <div className="flex justify-end py-24">
-        {isEditMode ? (
-          <BigButton text="수정" fill onClick={handleEditAnswer} />
-        ) : (
-          <BigButton text="제출" fill onClick={postAnswer} />
-        )}
+      <div className="flex justify-between items-center py-24">
+        {/* 힌트 표시 영역 */}
+        <div className="flex items-center">
+          {showHint && (
+            <div className="bg-gray-700 text-white p-4 rounded-lg">
+              <p className="text-sm">
+                💡 <strong>힌트: </strong>
+                TCP, IP, 4계층 구조, 연결지향, 비연결성, 패킷 교환, 신뢰성, 3-way handshake, 라우팅, 프로토콜 스택
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* 버튼 영역 */}
+        <div className="flex items-center gap-16">
+          <BigButton
+            text={showHint ? "힌트 숨기기" : "힌트 보기"}
+            onClick={toggleHint}
+            className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm transition-colors"
+          />
+          {isEditMode ? (
+            <BigButton text="수정" fill onClick={handleEditAnswer} />
+          ) : (
+            <BigButton text="제출" fill onClick={postAnswer} />
+          )}
+        </div>
       </div>
     </div>
   );
