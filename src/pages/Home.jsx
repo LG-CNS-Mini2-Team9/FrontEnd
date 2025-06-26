@@ -1,19 +1,27 @@
-import React, { useEffect, useState } from "react";
+//import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Nav from "../components/global/Nav";
 import BigButton from "../components/global/BigButton";
 import { Link } from "react-router-dom";
 import Window from "../components/home/Window";
-import { fetchQuestions, fetchRecommendQuestion } from "../api/CSQuestionApi";
+//import { fetchQuestions, fetchRecommendQuestion } from "../api/CSQuestionApi";
 import CSQuestionTable from "../components/cs/CSQuestionTable";
+import { mockQuestions, mockRecommendedQuestion } from "../mocks/homeData";
+
 
 const Home = () => {
-  const [recommendedQuestion, setRecommendedQuestion] = useState(null);
-  const [questions, setQuestions] = useState([]);
+  // const [recommendedQuestion, setRecommendedQuestion] = useState(null);
+  // const [questions, setQuestions] = useState([]);
 
-  useEffect(() => {
-    fetchRecommendQuestion().then((data) => setRecommendedQuestion(data));
-    fetchQuestions(1).then((data) => setQuestions(data.content));
-  }, []);
+  // useEffect(() => {
+  //   fetchRecommendQuestion().then((data) => setRecommendedQuestion(data));
+  //   fetchQuestions(1).then((data) => setQuestions(data.content));
+  // }, []);
+
+  const [recommendedQuestion, setRecommendedQuestion] = useState(
+    mockRecommendedQuestion || null
+  );
+  const [questions, setQuestions] = useState(mockQuestions || []);
 
   return (
     <div className="flex flex-col justify-center bg-gradient-to-br from-background-base to-white/10">
