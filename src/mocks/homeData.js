@@ -6,6 +6,10 @@ export const mockRecommendedQuestion = {
   isSubmitted: false,
 };
 
+export const mockHint = {
+  content: "TCP, IP, 4계층 구조, 연결지향, 비연결성, 패킷 교환, 신뢰성, 3-way handshake, 라우팅, 프로토콜 스택"
+}
+
 export const mockQuestions = [
   {
     id: 1,

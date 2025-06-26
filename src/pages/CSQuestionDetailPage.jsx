@@ -8,6 +8,7 @@ import { fetchQuestionById } from "../api/CSQuestionApi";
 import Tab from "../components/global/Tab";
 import { editAnswer } from "../api/AnswerResultApi";
 import CategoryChip from "../components/global/CategoryChip";
+import { mockHint } from "../mocks/homeData";
 
 const CSQuestionDetailPage = () => {
   const [question, setQuestion] = useState();
@@ -87,9 +88,9 @@ const CSQuestionDetailPage = () => {
         <div className="flex items-center">
           {showHint && (
             <div className="bg-gray-700 text-white p-4 rounded-lg">
-              <p className="text-sm">
+              <p className="text-base">
                 💡 <strong>힌트: </strong>
-                TCP, IP, 4계층 구조, 연결지향, 비연결성, 패킷 교환, 신뢰성, 3-way handshake, 라우팅, 프로토콜 스택
+                {mockHint.content}
               </p>
             </div>
           )}
