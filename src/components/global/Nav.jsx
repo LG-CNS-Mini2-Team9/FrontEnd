@@ -49,7 +49,7 @@ const Nav = () => {
               onClick={() => handleLogout(accessToken)}
             />
 
-            <Link to="/user/info">
+            <Link to="/statistics">
               {profileImgUrl ? (
                 <img
                   src={profileImgUrl}
