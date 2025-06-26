@@ -18,13 +18,14 @@ export const getAnswer = async (answerId) => {
 
   const res = {
     csanswer_id:2,
-    csquestion_id:1,
+    csquestion_id:2,
     csquestion_category:"알고리즘",
-    csquestion_content:"문제문제",
-    csanswer_content:"답변답변",
-    csanswer_createdAt:"2025-05-21",
-    user_nickname:"lgcns",
+    csquestion_content:"TCP/IP의 개념을 설명하세요",
+    csanswer_content:"TCP/IP는 인터넷 통신의 핵심 프로토콜 집합으로, 컴퓨터들이 네트워크를 통해 데이터를 정확하고 효율적으로 주고받도록 설계된 규약 체계이다.",
+    csanswer_createdAt:"2025-06-24",
+    author:"user1",
     user_id:1,
+    score:85
   }
   console.log(res);
   return res;
@@ -54,7 +55,7 @@ export const requestFeedback = async (answerId) => {
 
   const feedback = {
     content:"fff",
-    score:83
+    score:88
   }
   return feedback;
 };

@@ -30,7 +30,7 @@ const CSQuestionDetailPage = () => {
 
     try {
       const res = await axios.post(
-        "/api/answers/v1",
+        "/api/answers",
         {
           csquestion_id: questionId,
           csanswer_content: content,
