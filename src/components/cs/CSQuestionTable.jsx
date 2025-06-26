@@ -26,7 +26,7 @@ const CSQuestionTable = ({ questions }) => {
               className="h-48 text-center border-b border-gray-300/10 hover:bg-background-light"
             >
               <td className="p-2">{q.id}</td>
-              <td className="p-2">
+              <td className="text-center px-10">
                 <CategoryChip category={q.category} />
               </td>
               <td className="p-2 text-start pl-20 truncate">
