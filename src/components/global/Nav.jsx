@@ -38,7 +38,7 @@ const Nav = () => {
       </ul>
 
       <Link className="flex justify-center" to="/">
-        <img src={logo} className="h-90"/>
+        <img src={logo} className="h-40"/>
       </Link>
 
       <div className="flex gap-20 justify-end">
@@ -57,7 +57,7 @@ const Nav = () => {
                   className="w-44 h-44 bg-gray-300 rounded-full"
                 />
               ) : (
-                <button className="w-44 h-44 bg-gray-300 rounded-full"></button>
+                <button className="w-44 h-44 bg-primary rounded-full"></button>
               )}
             </Link>
           </>

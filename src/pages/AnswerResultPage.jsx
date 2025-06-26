@@ -120,7 +120,7 @@ export default function AnswerResultPage() {
       {feedback && (
         <div className="mb-60">
           <h3 className="text-lg mb-16 text-primary flex justify-between">
-            AI 피드백 <span>{result.score}점</span>
+            AI 피드백 <span>{feedback.score}점</span>
           </h3>
 
           <div className="whitespace-pre-wrap text-base leading-relaxed text-gray-300 border-1 border-gray-300/20 rounded-lg p-12 mb-24">
