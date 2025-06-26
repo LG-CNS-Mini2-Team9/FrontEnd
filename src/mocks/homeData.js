@@ -1,7 +1,7 @@
 export const mockRecommendedQuestion = {
   id: 101,
   category: "네트워크",
-  content: "TCP와 UDP의 차이점에 대해 설명해주세요.",
+  content: "TCP/IP의 개념을 설명하세요.",
   // Window 컴포넌트에서 사용하는 isSubmitted 속성을 추가합니다.
   isSubmitted: false,
 };
@@ -39,7 +39,7 @@ export const mockQuestions = [
       {
     id: 5,
     category: "네트워크",
-    content: "TCP와 UDP의 차이점에 대해 설명해주세요.",
+    content: "TCP/IP의 개념을 설명하세요.",
     createdAt: "2025-06-25T12:34:56",
     isSubmitted: false,
   },
