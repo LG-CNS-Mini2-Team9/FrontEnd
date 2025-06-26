@@ -9,9 +9,9 @@ const CSAnswerTable = ({ answers }) => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
-  const handleClickAnswer = ({ answerId }) => {
+  const handleClickAnswer = (answerId) => {
     // 푼 문제인지 검사
-    const isSolved = false;
+    const isSolved = true;
 
     if (!isSolved) {
       setShowModal(true);

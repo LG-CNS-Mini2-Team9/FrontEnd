@@ -16,6 +16,7 @@ import MyAllAnswersPage from "./pages/MyAllAnswersPage";
 import CSQuestionDetailPage from "./pages/CSQuestionDetailPage";
 import Auth from "./pages/Auth";
 import "./index.css";
+import StatisticsDashboard from "./components/statistic/StatisticsDashboard";
 
 function App() {
   // const accessToken = localStorage.getItem("accessToken");
@@ -41,6 +42,7 @@ function App() {
           <Route path="/answers/my/:questionId" element={<MyAnswersPage />} />
           <Route path="/answers/all/:questionId" element={<AnswersPage />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/statistics" element={<StatisticsDashboard />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -95,7 +95,7 @@ export default function AnswerResultPage() {
 
   return (
     <div className="px-120 text-white">
-      <Tab questionId={result.questionId} />
+      <Tab questionId={result.csquestion_id} />
 
       {/* ─── 문제 본문 ───────────────────────── */}
       <div className="border-b-1 border-gray-300/10 mb-36">
@@ -113,14 +113,14 @@ export default function AnswerResultPage() {
       <h3 className="text-lg mb-16 text-primary">답변</h3>
       <div
         className="border-1 rounded-lg p-12 mb-48 min-h-160 border-gray-300/20"
-        dangerouslySetInnerHTML={{ __html: result.csquestion_content }}
+        dangerouslySetInnerHTML={{ __html: result.csanswer_content }}
       ></div>
 
-      {/* ─── AI 피드백 받기 ───────────────────────── */}
+      {/* ─── AI 피드백 ───────────────────────── */}
       {feedback && (
         <div className="mb-60">
           <h3 className="text-lg mb-16 text-primary flex justify-between">
-            AI 피드백 <span>{feedback.score}점</span>
+            AI 피드백 <span>{result.score}점</span>
           </h3>
 
           <div className="whitespace-pre-wrap text-base leading-relaxed text-gray-300 border-1 border-gray-300/20 rounded-lg p-12 mb-24">
@@ -130,7 +130,7 @@ export default function AnswerResultPage() {
       )}
 
       {/* ─── 수정 / 삭제 ───────────────────────── */}
-      {userId === result.user_id && (
+      {userId == result.user_id && (
         <div className="flex gap-8 justify-end mb-60">
           <BigButton onClick={handleEdit} text="수정" fill />
           <BigButton onClick={handleDelete} text="삭제" />
