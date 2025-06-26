@@ -116,7 +116,7 @@ export default function AnswerResultPage() {
         dangerouslySetInnerHTML={{ __html: result.csquestion_content }}
       ></div>
 
-      {/* ─── AI 피드백 받기 ───────────────────────── */}
+      {/* ─── AI 피드백 ───────────────────────── */}
       {feedback && (
         <div className="mb-60">
           <h3 className="text-lg mb-16 text-primary flex justify-between">
